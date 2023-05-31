@@ -1,0 +1,75 @@
+{
+  "extractors": [
+    {
+      "title": "Cisco FTD ICMP Extractor",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "%{TIMESTAMP_ISO8601} %{IP} [:] %{DATA:Eventlog_ID}[:] EventPriority: %{DATA:EventPriority}, DeviceUUID: %{DATA:DeviceUUID}, InstanceID: %{DATA:InstanceID}, FirstPacketSecond: %{TIMESTAMP_ISO8601:FirstPacketSecond}, ConnectionID: %{INT:ConnectionID}, AccessControlRuleAction: %{DATA:AccessControlRuleAction}, SrcIP: %{IP:SrcIP}, DstIP: %{IP:DstIP}, ICMPType: %{DATA:ICMPType}, ICMPCode: %{DATA:ICMPCode}, Protocol: %{DATA:Protocol}, IngressInterface: %{DATA:IngressInterface}, EgressInterface: %{DATA:EgressInterface}, IngressZone: %{DATA:IngressZone}, EgressZone: %{DATA:EgressZone}, IngressVRF: %{DATA:IngressVRF}, EgressVRF: %{DATA:EgressVRF}, ACPolicy: %{DATA:ACPolicy}, AccessControlRuleName: %{DATA:AccessControlRuleName}, Prefilter Policy: %{DATA:Prefilter Policy}, Client: %{DATA:Client}, ApplicationProtocol: %{DATA:ApplicationProtocol}, InitiatorPackets: %{INT:InitiatorPackets}, ResponderPackets: %{INT:ResponderPackets}, InitiatorBytes: %{INT:InitiatorBytes}, ResponderBytes: %{INT:ResponderBytes}, NAPPolicy: %{GREEDYDATA:NAPPolicy}"
+      },
+      "condition_type": "string",
+      "condition_value": "Protocol: icmp"
+    },
+    {
+      "title": "Cisco FTD TCP Traffic Extractor",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "%{TIMESTAMP_ISO8601} %{IP} [:] %{DATA:Eventlog_ID}[:] EventPriority: %{DATA:EventPriority}, DeviceUUID: %{DATA:DeviceUUID}, InstanceID: %{DATA:InstanceID}, FirstPacketSecond: %{TIMESTAMP_ISO8601:FirstPacketSecond}, ConnectionID: %{INT:ConnectionID}, AccessControlRuleAction: %{DATA:AccessControlRuleAction}, SrcIP: %{IP:SrcIP}, DstIP: %{IP:DstIP}, SrcPort: %{DATA:SrcPort}, DstPort: %{DATA:DstPort}, Protocol: %{DATA:Protocol}, IngressInterface: %{DATA:IngressInterface}, EgressInterface: %{DATA:EgressInterface}, IngressZone: %{DATA:IngressZone}, EgressZone: %{DATA:EgressZone}, IngressVRF: %{DATA:IngressVRF}, EgressVRF: %{DATA:EgressVRF}, ACPolicy: %{DATA:ACPolicy}, AccessControlRuleName: %{DATA:AccessControlRuleName}, Prefilter Policy: %{DATA:Prefilter Policy}, InitiatorPackets: %{INT:InitiatorPackets}, ResponderPackets: %{INT:ResponderPackets}, InitiatorBytes: %{INT:InitiatorBytes}, ResponderBytes: %{INT:ResponderBytes}, NAPPolicy: %{GREEDYDATA:NAPPolicy}"
+      },
+      "condition_type": "string",
+      "condition_value": "Protocol: tcp"
+    },
+    {
+      "title": "Cisco FTD UDP Traffic Extractor",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 3,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "%{TIMESTAMP_ISO8601} %{IP} [:] %{DATA:Eventlog_ID}[:] EventPriority: %{DATA:EventPriority}, DeviceUUID: %{DATA:DeviceUUID}, InstanceID: %{DATA:InstanceID}, FirstPacketSecond: %{TIMESTAMP_ISO8601:FirstPacketSecond}, ConnectionID: %{INT:ConnectionID}, AccessControlRuleAction: %{DATA:AccessControlRuleAction}, SrcIP: %{IP:SrcIP}, DstIP: %{IP:DstIP}, SrcPort: %{DATA:SrcPort}, DstPort: %{DATA:DstPort}, Protocol: %{DATA:Protocol}, IngressInterface: %{DATA:IngressInterface}, EgressInterface: %{DATA:EgressInterface}, IngressZone: %{DATA:IngressZone}, EgressZone: %{DATA:EgressZone}, IngressVRF: %{DATA:IngressVRF}, EgressVRF: %{DATA:EgressVRF}, ACPolicy: %{DATA:ACPolicy}, AccessControlRuleName: %{DATA:AccessControlRuleName}, Prefilter Policy: %{DATA:Prefilter Policy}, InitiatorPackets: %{INT:InitiatorPackets}, ResponderPackets: %{INT:ResponderPackets}, InitiatorBytes: %{INT:InitiatorBytes}, ResponderBytes: %{INT:ResponderBytes}, NAPPolicy: %{GREEDYDATA:NAPPolicy}"
+      },
+      "condition_type": "string",
+      "condition_value": "Protocol: udp"
+    },
+    {
+      "title": "Cisco FTD Security Intelligence Extractor",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "%{TIMESTAMP_ISO8601} %{IP} [:] %{DATA:Eventlog_ID}[:] EventPriority: %{DATA:EventPriority}, DeviceUUID: %{DATA:DeviceUUID}, InstanceID: %{DATA:InstanceID}, FirstPacketSecond: %{TIMESTAMP_ISO8601:FirstPacketSecond}, ConnectionID: %{INT:ConnectionID}, AccessControlRuleAction: %{DATA:AccessControlRuleAction}, AccessControlRuleReason: %{DATA:AccessControlRuleReason}, SrcIP: %{IP:SrcIP}, DstIP: %{IP:DstIP}, SrcPort: %{INT:SrcPort}, DstPort: %{INT:DstPort}, Protocol: %{DATA:Protocol}, IngressInterface: %{DATA:IngressInterface}, EgressInterface: %{DATA:EgressInterface}, IngressZone: %{DATA:IngressZone}, EgressZone: %{DATA:EgressZone}, IngressVRF: %{DATA:IngressVRF}, EgressVRF: %{DATA:EgressVRF}, ACPolicy: %{DATA:ACPolicy}, Prefilter Policy: %{DATA:Prefilter Policy}, InitiatorPackets: %{INT:InitiatorPackets}, ResponderPackets: %{INT:ResponderPackets}, InitiatorBytes: %{INT:InitiatorBytes}, ResponderBytes: %{INT:ResponderBytes}, SecIntMatchingIP: %{DATA:SecIntMatchingIP}, IPReputationSICategory: %{GREEDYDATA: IPReputationSICategory}"
+      },
+      "condition_type": "string",
+      "condition_value": "IPReputationSICategory"
+    },
+    {
+      "title": "Cisco FTD %FTD-6-113039 AnyConnect Session Start",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "<190>%{TIMESTAMP_ISO8601} %{IPORHOST} [:] %{DATA:Eventlog_ID}[:] Group <%{DATA:VPNGroup}> User <%{DATA:VPNUserName}> IP <%{IPV4:VPNUserIP}> %{GREEDYDATA:VPN Message}"
+      },
+      "condition_type": "string",
+      "condition_value": "%FTD-6-113039"
+    }
+  ],
+  "version": "5.1.1"
+}
